@@ -41,11 +41,33 @@ promptUser = () => {
     ]).then(answers => {
         connection.query(`SELECT * FROM products WHERE ID = ${answers.item_id}`, function (error, results) {
             if (error) throw err;
-            let numLeft = results[0].stock;
-            if (numLeft - answers.quantity_wanted >= 0) {
-                console.log('RUN TRANSACTION');
+            let stockPriorTransaction = results[0].stock;
+            if (stockPriorTransaction - answers.quantity_wanted >= 0) {
+
+                let stockPostTransaction = (stockPriorTransaction - answers.quantity_wanted); 
+                // logCleanResults(results);
+                console.log('RUNNING TRANSACTION...');
+
+                connection.query(
+                    "UPDATE products SET ? WHERE ?",
+                    [
+                        {
+                            stock: stockPostTransaction
+                        },
+                        {
+                            id: answers.item_id
+                        }
+                    ],
+                    function(err) {
+                        if (err) throw err;
+                        console.log('TRANSACTION COMPLETED');
+                        promptUser();
+                    }
+                )
             } else {
-                console.log('INSUFFICIENT QUANITTY');
+                console.log('INSUFFICIENT QUANITTY:');
+                logCleanResults(results);
+                promptUser()
             }
         });
 
@@ -81,7 +103,7 @@ logCleanResults = (results) => {
         Stock: ${results[0].stock}
         *********************************
         `);
-        console.log('Press `DOWN ARROW` to continue...')
+        // console.log('Press `DOWN ARROW` to continue...')
     }
 
 }
