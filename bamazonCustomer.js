@@ -41,10 +41,15 @@ promptUser = () => {
     ]).then(answers => {
         connection.query(`SELECT * FROM products WHERE ID = ${answers.item_id}`, function (error, results) {
             if (error) throw err;
-            let stockPriorTransaction = results[0].stock;
-            if (stockPriorTransaction - answers.quantity_wanted >= 0) {
 
-                let stockPostTransaction = (stockPriorTransaction - answers.quantity_wanted); 
+            let quantityWanted = answers.quantity_wanted;
+            let stockPriorTransaction = results[0].stock;
+            let itemPrice = results[0].price;
+            let orderPrice = itemPrice * quantityWanted;
+
+            if (stockPriorTransaction - quantityWanted >= 0) {
+
+                let stockPostTransaction = (stockPriorTransaction - quantityWanted);
                 // logCleanResults(results);
                 console.log('RUNNING TRANSACTION...');
 
@@ -58,9 +63,10 @@ promptUser = () => {
                             id: answers.item_id
                         }
                     ],
-                    function(err) {
+                    function (err) {
                         if (err) throw err;
                         console.log('TRANSACTION COMPLETED');
+                        console.log('YOU PAID: $' + orderPrice + '.00');
                         promptUser();
                     }
                 )
