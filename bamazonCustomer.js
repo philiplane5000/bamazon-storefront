@@ -2,10 +2,10 @@ const mysql = require('mysql');
 const inquirer = require('inquirer');
 
 const connection = mysql.createConnection({
-    host: 'localhost',
+    host: 'bamazon-west-coast.cpzqdqagzv5q.us-west-1.rds.amazonaws.com',
     port: 3306,
-    user: 'root',
-    password: 'Jeffabrick-3',
+    user: 'mysqladmin5000',
+    password: 'pZ3M008#',
     database: 'bamazon'
 })
 
@@ -70,6 +70,7 @@ promptUser = () => {
                         promptUser();
                     }
                 )
+                // connection.end();
             } else {
                 console.log('INSUFFICIENT QUANITTY:');
                 logCleanResults(results);
