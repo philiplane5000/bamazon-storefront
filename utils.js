@@ -13,8 +13,8 @@ module.exports = {
                 *********************************
                 `);
             })
-            console.log('***END-INVENTORY***')
-            console.log('*******************')
+            console.log('*********************END-INVENTORY***************')
+            console.log('*************************************************')
             console.log('Press `DOWN ARROW` to continue...')
         } else {
             console.log(`
@@ -30,7 +30,26 @@ module.exports = {
 
     },
 
-    logFivePlusTwo() {
-        console.log(5 + 2);
+    displayInventory: displayInventory = (connection) => {
+        console.log('POPULATING INVENTORY BELOW:');
+        connection.query(`SELECT * FROM products`, function (err, results) {
+            if (err) throw err;
+            //
+            logCleanResults(results);
+        })
+    },
+
+    viewLowInventory: viewLowInventory = () => {
+        console.log('YOU CLICKED: VIEW LOW INVENTORY');
+    },
+
+    addToInventory: addToInventory = () => {
+        console.log('YOU CLICKED: ADD TO INVENTORY');
+    },
+
+    addNewProduct: addNewProduct = () => {
+        console.log('YOU CLICKED ADD NEW PRODUCT');
     }
+
+
 }

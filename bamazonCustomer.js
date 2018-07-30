@@ -14,17 +14,17 @@ connection.connect(function (err) {
     if (err) throw err;
     console.log("connected as id " + connection.threadId + "\n");
     //
-    displayInventory();
+    utils.displayInventory(connection);
     promptUser();
 })
 
-displayInventory = () => {
-    console.log('POPULATING INVENTORY BELOW...')
-    connection.query('SELECT * from products', function (err, results) {
-        if (err) throw err;
-        utils.logCleanResults(results);
-    })
-}
+// displayInventory = () => {
+//     console.log('POPULATING INVENTORY BELOW...')
+//     connection.query('SELECT * from products', function (err, results) {
+//         if (err) throw err;
+//         utils.logCleanResults(results);
+//     })
+// }
 
 promptUser = () => {
 

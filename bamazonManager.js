@@ -1,5 +1,6 @@
 const mysql = require('mysql');
 const inquirer = require('inquirer');
+const utils = require('./utils');
 
 let managerPresent = true;
 
@@ -21,29 +22,27 @@ promptManager()
 function promptManager() {
 
     if (managerPresent) {
-        
-        inquirer.prompt([
-            {
-                type: "list",
-                message: "Hello Sir, please select from the following:",
-                choices: ['View Products for Sale', 'View Low Inventory', 'Add to Inventory', 'Add New Product'],
-                name: "command"
-            }
-        ]).then(answers => {
+
+        inquirer.prompt([{
+            type: "list",
+            message: "Hello Sir, please select from the following:",
+            choices: ['View Products for Sale', 'View Low Inventory', 'Add to Inventory', 'Add New Product'],
+            name: "command"
+        }]).then(answers => {
             console.log(answers.command);
             switch (answers.command) {
                 case 'View Products for Sale':
-                    viewProducts()
-                break;
+                    utils.displayInventory(connection)
+                    break;
                 case 'View Low Inventory':
-                    viewLowInventory()
-                break;
+                    utils.viewLowInventory()
+                    break;
                 case 'Add to Inventory':
-                    addToInventory()
-                break;
+                    utils.addToInventory()
+                    break;
                 case 'Add New Product':
-                    addNewProduct()
-                break;            
+                    utils.addNewProduct()
+                    break;
                 default:
                     console.log('Sorry, what was that?');
                     promptManager()
@@ -53,33 +52,5 @@ function promptManager() {
             managerPresent = false;
 
         })
-
     }
-
-
-}
-
-function viewProducts() {
-
-    connection.query(`SELECT * FROM products`, function(err, results) {
-        if (err) throw err;
-        //
-        console.log(results);
-    })
-    // console.log('VIEW PRODUCTS');
-
-
-}
-
-
-function viewLowInventory() {
-    console.log('VIEW LOW INVENTORY');
-}
-
-function addToInventory() {
-    console.log('ADD TO INVENTORY');
-}
-
-function addNewProduct() {
-    console.log('ADD NEW PRODUCT');
 }
