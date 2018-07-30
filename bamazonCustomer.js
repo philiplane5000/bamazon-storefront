@@ -1,5 +1,6 @@
 const mysql = require('mysql');
 const inquirer = require('inquirer');
+const utils = require('./utils');
 
 const connection = mysql.createConnection({
     host: 'bamazon-west-coast.cpzqdqagzv5q.us-west-1.rds.amazonaws.com',
@@ -21,7 +22,7 @@ displayInventory = () => {
     console.log('POPULATING INVENTORY BELOW...')
     connection.query('SELECT * from products', function (err, results) {
         if (err) throw err;
-        logCleanResults(results);
+        utils.logCleanResults(results);
     })
 }
 
@@ -73,7 +74,7 @@ promptUser = () => {
                 // connection.end();
             } else {
                 console.log('INSUFFICIENT QUANITTY:');
-                logCleanResults(results);
+                utils.logCleanResults(results);
                 promptUser()
             }
         });
@@ -85,33 +86,33 @@ promptUser = () => {
 // utils //
 //*******//
 
-logCleanResults = (results) => {
-    if (results.length > 1) {
+// logCleanResults = (results) => {
+//     if (results.length > 1) {
 
-        results.forEach(product => {
-            console.log(`
-            *********************************
-            Item-ID: ${product.ID}
-            Product-Name: ${product.product_name}
-            Price: $${product.price}.00
-            Stock: ${product.stock}
-            *********************************
-            `);
-        })
-        console.log('***END-INVENTORY***')
-        console.log('*******************')
-        console.log('Press `DOWN ARROW` to continue...')
-    } else {
-        console.log(`
-        *********************************
-        Item-ID: ${results[0].ID}
-        Product-Name: ${results[0].product_name}
-        Price: $${results[0].price}.00
-        Stock: ${results[0].stock}
-        *********************************
-        `);
-        // console.log('Press `DOWN ARROW` to continue...')
-    }
+//         results.forEach(product => {
+//             console.log(`
+//             *********************************
+//             Item-ID: ${product.ID}
+//             Product-Name: ${product.product_name}
+//             Price: $${product.price}.00
+//             Stock: ${product.stock}
+//             *********************************
+//             `);
+//         })
+//         console.log('***END-INVENTORY***')
+//         console.log('*******************')
+//         console.log('Press `DOWN ARROW` to continue...')
+//     } else {
+//         console.log(`
+//         *********************************
+//         Item-ID: ${results[0].ID}
+//         Product-Name: ${results[0].product_name}
+//         Price: $${results[0].price}.00
+//         Stock: ${results[0].stock}
+//         *********************************
+//         `);
+//         // console.log('Press `DOWN ARROW` to continue...')
+//     }
 
-}
+// }
 

@@ -11,6 +11,10 @@ const connection = mysql.createConnection({
     database: 'bamazon'
 })
 
+connection.connect(function (err) {
+    if (err) throw err;
+    //functions here:
+})
 
 promptManager()
 
@@ -41,17 +45,13 @@ function promptManager() {
                     addNewProduct()
                 break;            
                 default:
+                    console.log('Sorry, what was that?');
+                    promptManager()
                     break;
             }
 
             managerPresent = false;
 
-            connection.connect(function (err) {
-                if (err) throw err;
-                console.log("\n" + "connected as id " + connection.threadId);
-                console.log("*********************************************" + "\n");
-                //functions here:
-            })
         })
 
     }
@@ -60,7 +60,15 @@ function promptManager() {
 }
 
 function viewProducts() {
-    console.log('VIEW PRODUCTS');
+
+    connection.query(`SELECT * FROM products`, function(err, results) {
+        if (err) throw err;
+        //
+        console.log(results);
+    })
+    // console.log('VIEW PRODUCTS');
+
+
 }
 
 
