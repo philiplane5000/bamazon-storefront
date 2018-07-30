@@ -15,7 +15,6 @@ module.exports = {
             })
             console.log('*********************END-INVENTORY***************')
             console.log('*************************************************')
-            console.log('Press `DOWN ARROW` to continue...')
         } else {
             console.log(`
             *********************************
@@ -25,7 +24,6 @@ module.exports = {
             Stock: ${results[0].stock}
             *********************************
             `);
-            // console.log('Press `DOWN ARROW` to continue...')
         }
 
     },
@@ -37,6 +35,25 @@ module.exports = {
             //
             logCleanResults(results);
         })
+    },
+
+    runTransaction: runTransaction = (connection, stockPostTransaction, orderPrice, ID) => {
+        connection.query(
+            "UPDATE products SET ? WHERE ?", [{
+                    stock: stockPostTransaction
+                },
+                {
+                    id: ID
+                }
+            ],
+            function (err) {
+                if (err) throw err;
+                console.log('\n' + 'TRANSACTION COMPLETED');
+                console.log('YOU PAID: $' + orderPrice + '.00');
+                return;
+            }
+        )
+
     },
 
     viewLowInventory: viewLowInventory = () => {
