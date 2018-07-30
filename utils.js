@@ -68,5 +68,4 @@ module.exports = {
         console.log('YOU CLICKED ADD NEW PRODUCT');
     }
 
-
 }

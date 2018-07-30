@@ -1,3 +1,4 @@
+const result = require('dotenv').config();
 const mysql = require('mysql');
 const inquirer = require('inquirer');
 const utils = require('./utils');
@@ -5,8 +6,8 @@ const utils = require('./utils');
 const connection = mysql.createConnection({
     host: 'bamazon-west-coast.cpzqdqagzv5q.us-west-1.rds.amazonaws.com',
     port: 3306,
-    user: 'mysqladmin5000',
-    password: 'pZ3M008#',
+    user: process.env.MYSQL_USERNAME,
+    password: process.env.MYSQL_PASSWORD,
     database: 'bamazon'
 })
 
