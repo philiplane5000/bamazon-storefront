@@ -27,6 +27,23 @@ function promptManager() {
             }
         ]).then(answers => {
             console.log(answers.command);
+            switch (answers.command) {
+                case 'View Products for Sale':
+                    viewProducts()
+                break;
+                case 'View Low Inventory':
+                    viewLowInventory()
+                break;
+                case 'Add to Inventory':
+                    addToInventory()
+                break;
+                case 'Add New Product':
+                    addNewProduct()
+                break;            
+                default:
+                    break;
+            }
+
             managerPresent = false;
 
             connection.connect(function (err) {
@@ -40,4 +57,21 @@ function promptManager() {
     }
 
 
+}
+
+function viewProducts() {
+    console.log('VIEW PRODUCTS');
+}
+
+
+function viewLowInventory() {
+    console.log('VIEW LOW INVENTORY');
+}
+
+function addToInventory() {
+    console.log('ADD TO INVENTORY');
+}
+
+function addNewProduct() {
+    console.log('ADD NEW PRODUCT');
 }
