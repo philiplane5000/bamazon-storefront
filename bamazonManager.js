@@ -62,6 +62,8 @@ function promptManager() {
     }
 }
 
+// MANAGER SPECIFIC FUNCTIONS://
+// **************************//
 function promptForInventory(callback) {
 
     inquirer.prompt([
