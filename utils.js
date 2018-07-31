@@ -1,3 +1,5 @@
+// const inquirer = require('inquirer');
+
 module.exports = {
 
     logCleanResults: logCleanResults = (results) => {
@@ -40,11 +42,11 @@ module.exports = {
     runTransaction: runTransaction = (connection, stockPostTransaction, orderPrice, ID) => {
         connection.query(
             "UPDATE products SET ? WHERE ?", [{
-                    stock: stockPostTransaction
-                },
-                {
-                    id: ID
-                }
+                stock: stockPostTransaction
+            },
+            {
+                id: ID
+            }
             ],
             function (err) {
                 if (err) throw err;
@@ -68,12 +70,12 @@ module.exports = {
         )
     },
 
-    addToInventory: addToInventory = () => {
-        console.log('YOU CLICKED: ADD TO INVENTORY');
+    addToInventory: addToInventory = (connection) => {
+        console.log('YOU CLICKED ADD TO INVENTORY');
     },
 
     addNewProduct: addNewProduct = () => {
         console.log('YOU CLICKED ADD NEW PRODUCT');
-    }
+    },
 
 }

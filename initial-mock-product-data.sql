@@ -12,16 +12,16 @@ PRIMARY KEY (ID)
 );
 
 INSERT INTO products (product_name, department_name, price, stock)
-VALUES ('wireless mouse', 'electronics', 10, 200);
+VALUES ('wireless mouse', 'electronics', 10, 29);
 
 INSERT INTO products (product_name, department_name, price, stock)
 VALUES('silly putty', 'kids', 4, 50);
 
 INSERT INTO products (product_name, department_name, price, stock)
-VALUES('paper towels', 'kitchen', 15, 100);
+VALUES('paper towels', 'kitchen', 15, 3);
 
 INSERT INTO products (product_name, department_name, price, stock)
-VALUES('bluetooth speakers', 'electronics', 20, 40);
+VALUES('bluetooth speakers', 'electronics', 20, 2);
 
 INSERT INTO products (product_name, department_name, price, stock)
 VALUES('aloe vera gel', 'skin', 9, 15);
@@ -36,16 +36,16 @@ INSERT INTO products (product_name, department_name, price, stock)
 VALUES('french press', 'kitchen', 25, 100);
 
 INSERT INTO products (product_name, department_name, price, stock)
-VALUES('wireless keyboard', 'electronics', 20, 150);
+VALUES('wireless keyboard', 'electronics', 20, 105);
 
 INSERT INTO products (product_name, department_name, price, stock)
-VALUES('samurai sword', 'antiques', 500, 50);
+VALUES('samurai sword', 'antiques', 500, 38);
 
 INSERT INTO products (product_name, department_name, price, stock)
-VALUES('gold vase', 'antiques', 600, 40);
+VALUES('gold vase', 'antiques', 600, 4);
 
 INSERT INTO products (product_name, department_name, price, stock)
-VALUES ('bluetooth headphones', 'electronics', 10, 200);
+VALUES ('bluetooth headphones', 'electronics', 10, 20);
 
 INSERT INTO products (product_name, department_name, price, stock)
 VALUES('whoopy cushion', 'kids', 8, 75);
@@ -54,7 +54,7 @@ INSERT INTO products (product_name, department_name, price, stock)
 VALUES('kitchen knife', 'kitchen', 30, 165);
 
 INSERT INTO products (product_name, department_name, price, stock)
-VALUES('vitamix', 'kitchen', 550, 55);
+VALUES('vitamix', 'kitchen', 550, 51);
 
 UPDATE products
 SET product_name = 'wireless mouse'
