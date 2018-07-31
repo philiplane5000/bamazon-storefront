@@ -56,8 +56,16 @@ module.exports = {
 
     },
 
-    viewLowInventory: viewLowInventory = () => {
-        console.log('YOU CLICKED: VIEW LOW INVENTORY');
+    viewLowInventory: viewLowInventory = (connection) => {
+        connection.query(
+            "SELECT * FROM products WHERE (stock < 5)",
+            function (err, response) {
+                if (err) throw err;
+                console.log('\n' + 'ITEMS BELOW 5 STOCK:');
+                logCleanResults(response);
+                return;
+            }
+        )
     },
 
     addToInventory: addToInventory = () => {
