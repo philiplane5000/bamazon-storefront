@@ -15,7 +15,7 @@ INSERT INTO products (product_name, department_name, price, stock)
 VALUES ('wireless mouse', 'electronics', 10, 29);
 
 INSERT INTO products (product_name, department_name, price, stock)
-VALUES('silly putty', 'kids', 4, 50);
+VALUES('wireless keyboard', 'electronics', 20, 105);
 
 INSERT INTO products (product_name, department_name, price, stock)
 VALUES('paper towels', 'kitchen', 15, 3);
@@ -24,38 +24,33 @@ INSERT INTO products (product_name, department_name, price, stock)
 VALUES('bluetooth speakers', 'electronics', 20, 2);
 
 INSERT INTO products (product_name, department_name, price, stock)
-VALUES('aloe vera gel', 'skin', 9, 15);
+VALUES('coleman tent', 'outdoor', 9, 15);
 
 INSERT INTO products (product_name, department_name, price, stock)
-VALUES('sunscreen spf-50', 'skin', 7, 20);
-
-INSERT INTO products (product_name, department_name, price, stock)
-VALUES('toy gun', 'kids', 12, 90);
+VALUES('vitamix', 'kitchen', 550, 51);
 
 INSERT INTO products (product_name, department_name, price, stock)
 VALUES('french press', 'kitchen', 25, 100);
 
 INSERT INTO products (product_name, department_name, price, stock)
-VALUES('wireless keyboard', 'electronics', 20, 105);
+VALUES('silly putty', 'kids', 4, 50);
 
 INSERT INTO products (product_name, department_name, price, stock)
-VALUES('samurai sword', 'antiques', 500, 38);
+VALUES('camping cot', 'outdoor', 500, 38);
 
 INSERT INTO products (product_name, department_name, price, stock)
 VALUES('gold vase', 'antiques', 600, 4);
 
-INSERT INTO products (product_name, department_name, price, stock)
-VALUES ('bluetooth headphones', 'electronics', 10, 20);
+-- INSERT INTO products (product_name, department_name, price, stock)
+-- VALUES ('bluetooth headphones', 'electronics', 10, 20);
 
-INSERT INTO products (product_name, department_name, price, stock)
-VALUES('whoopy cushion', 'kids', 8, 75);
+-- INSERT INTO products (product_name, department_name, price, stock)
+-- VALUES('whoopy cushion', 'kids', 8, 75);
 
-INSERT INTO products (product_name, department_name, price, stock)
-VALUES('kitchen knife', 'kitchen', 30, 165);
+-- INSERT INTO products (product_name, department_name, price, stock)
+-- VALUES('kitchen knife', 'kitchen', 30, 165);
 
-INSERT INTO products (product_name, department_name, price, stock)
-VALUES('vitamix', 'kitchen', 550, 51);
 
-UPDATE products
-SET product_name = 'wireless mouse'
-WHERE ID = 1;
+-- UPDATE products
+-- SET stock = 4
+-- WHERE ID = 11;
