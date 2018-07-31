@@ -30,12 +30,13 @@ module.exports = {
 
     },
 
-    displayInventory: displayInventory = (connection) => {
+    displayInventory: displayInventory = (connection, callback) => {
         console.log('POPULATING INVENTORY BELOW:');
         connection.query(`SELECT * FROM products`, function (err, results) {
             if (err) throw err;
             //
             logCleanResults(results);
+            callback();
         })
     },
 

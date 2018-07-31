@@ -1,7 +1,7 @@
-const result = require('dotenv').config();
-const mysql = require('mysql');
+const result   = require('dotenv').config();
+const mysql    = require('mysql');
 const inquirer = require('inquirer');
-const utils = require('./utils');
+const utils    = require('./utils');
 
 const connection = mysql.createConnection({
     host: 'bamazon-west-coast.cpzqdqagzv5q.us-west-1.rds.amazonaws.com',
@@ -13,22 +13,21 @@ const connection = mysql.createConnection({
 
 connection.connect(function (err) {
     if (err) throw err;
-    utils.displayInventory(connection);
-    promptShopper();
+    // utils.displayInventory(connection);
+    utils.displayInventory(connection, promptShopper)
 })
 
 promptShopper = () => {
-
     inquirer.prompt([{
-            type: "input",
-            message: "\nEnter ID of the product you would like to buy:",
-            name: "item_id"
-        },
-        {
-            type: "input",
-            message: "\nEnter quantity you would like to purchase:\n",
-            name: "quantity_wanted"
-        }
+        type: "input",
+        message: "Enter ID of the product you would like to buy:",
+        name: "item_id"
+    },
+    {
+        type: "input",
+        message: "Enter quantity you would like to purchase:",
+        name: "quantity_wanted"
+    }
     ]).then(answers => {
         connection.query(`SELECT * FROM products WHERE ID = ${answers.item_id}`, function (error, results) {
             if (error) throw err;
@@ -43,15 +42,11 @@ promptShopper = () => {
                 console.log('RUNNING TRANSACTION...');
                 utils.runTransaction(connection, stockPostTransaction, orderPrice, id);
                 connection.end();
-                // promptShopper();
             } else {
                 console.log('INSUFFICIENT QUANITTY:');
                 utils.logCleanResults(results);
-                // promptShopper()
                 connection.end();
             }
         });
-
     })
-
 }
