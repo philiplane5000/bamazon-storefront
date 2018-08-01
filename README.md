@@ -2,6 +2,4 @@
 
 ### Improvements:
 
-* promptUser or promptManager a second time after first command fulfilled
-
-* move manager functions over to utils 
+* include optional callback on logCleanResults to prompt user in some cases and not others 

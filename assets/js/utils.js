@@ -16,6 +16,81 @@ connection.connect(function (err) {
 
 module.exports = {
 
+    promptShopper: promptShopper = () => {
+        inquirer.prompt([
+            {
+                type: "list",
+                message: "Welcome to Bamazon!",
+                choices: ["Shop Products", "Exit"],
+                name: "command"
+            }
+        ]).then(answers => {
+            switch (answers.command) {
+                case 'Shop Products':
+                    displayInventory(addToCart);
+                    break;
+                case 'Exit':
+                    connection.end()
+                    break;
+                default:
+                    console.log('Sorry, what was that?');
+                    promptShopper()
+                    break;
+            }
+        })
+    },
+
+    addToCart: addToCart = (callback) => {
+        inquirer.prompt([{
+            type: "input",
+            message: "Enter ID of the product you would like to buy:",
+            name: "item_id"
+        },
+        {
+            type: "input",
+            message: "Enter quantity you would like to purchase:",
+            name: "quantity_wanted"
+        }
+        ]).then(answers => {
+            connection.query(`SELECT * FROM products WHERE ID = ${answers.item_id}`, function (error, results) {
+                if (error) throw err;
+                let quantityWanted = answers.quantity_wanted;
+                let stockPriorTransaction = results[0].stock;
+                let itemPrice = results[0].price;
+                let orderPrice = itemPrice * quantityWanted;
+    
+                if (stockPriorTransaction - quantityWanted >= 0) {
+                    let stockPostTransaction = (stockPriorTransaction - quantityWanted);
+                    console.log('RUNNING TRANSACTION...');
+                    runTransaction(stockPostTransaction, orderPrice, answers.item_id, promptShopper);
+                } else {
+                    console.log('INSUFFICIENT QUANITTY:');
+                    logCleanResults(results);
+                }
+            });
+        })
+    },
+
+    runTransaction: runTransaction = (stockPostTransaction, orderPrice, ID, callback) => {
+        connection.query(
+            "UPDATE products SET ? WHERE ?", [{
+                stock: stockPostTransaction
+            },
+            {
+                id: ID
+            }
+            ],
+            function (err) {
+                if (err) throw err;
+                console.log('\n' + 'TRANSACTION COMPLETED');
+                console.log('YOU PAID: $' + orderPrice + '.00');
+                callback();
+                return;
+            }
+        )
+
+    },
+
     promptManager: promptManager = () => {
 
         inquirer.prompt([
@@ -189,32 +264,13 @@ module.exports = {
     },
 
     addNewProduct: addNewProduct = (product, callback) => {
-    connection.query('INSERT INTO products SET ?', product, function (err, results) {
-        if (err) throw err;
-        console.log("\n****************************************************")
-        console.log(`PRODUCT SUCCESSFULLY ADDED AND ASSIGNED ID NUMBER: ${results.insertId}`)
-        console.log("****************************************************\n")
-        callback();
-    });
-    },
-
-    runTransaction: runTransaction = (connection, stockPostTransaction, orderPrice, ID) => {
-        connection.query(
-            "UPDATE products SET ? WHERE ?", [{
-                stock: stockPostTransaction
-            },
-            {
-                id: ID
-            }
-            ],
-            function (err) {
-                if (err) throw err;
-                console.log('\n' + 'TRANSACTION COMPLETED');
-                console.log('YOU PAID: $' + orderPrice + '.00');
-                return;
-            }
-        )
-
-    },
+        connection.query('INSERT INTO products SET ?', product, function (err, results) {
+            if (err) throw err;
+            console.log("\n****************************************************")
+            console.log(`PRODUCT SUCCESSFULLY ADDED AND ASSIGNED ID NUMBER: ${results.insertId}`)
+            console.log("****************************************************\n")
+            callback();
+        });
+    }
 
 }
