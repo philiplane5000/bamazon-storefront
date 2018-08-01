@@ -83,7 +83,7 @@ module.exports = {
             function (err) {
                 if (err) throw err;
                 console.log('\n' + 'TRANSACTION COMPLETED');
-                console.log('YOU PAID: $' + orderPrice + '.00\n');
+                console.log('YOU PAID: $' + orderPrice + '.00\ncl');
                 callback();
                 return;
             }
