@@ -40,7 +40,7 @@ module.exports = {
         })
     },
 
-    addToCart: addToCart = (callback) => {
+    addToCart: addToCart = () => {
         inquirer.prompt([{
             type: "input",
             message: "Enter ID of the product you would like to buy:",
@@ -58,14 +58,14 @@ module.exports = {
                 let stockPriorTransaction = results[0].stock;
                 let itemPrice = results[0].price;
                 let orderPrice = itemPrice * quantityWanted;
-    
+
                 if (stockPriorTransaction - quantityWanted >= 0) {
                     let stockPostTransaction = (stockPriorTransaction - quantityWanted);
                     console.log('RUNNING TRANSACTION...');
                     runTransaction(stockPostTransaction, orderPrice, answers.item_id, promptShopper);
                 } else {
                     console.log('INSUFFICIENT QUANITTY:');
-                    logCleanResults(results);
+                    logCleanResults(results, promptShopper);
                 }
             });
         })
@@ -83,7 +83,7 @@ module.exports = {
             function (err) {
                 if (err) throw err;
                 console.log('\n' + 'TRANSACTION COMPLETED');
-                console.log('YOU PAID: $' + orderPrice + '.00');
+                console.log('YOU PAID: $' + orderPrice + '.00\n');
                 callback();
                 return;
             }
@@ -152,7 +152,7 @@ module.exports = {
         )
     },
 
-    logCleanResults: logCleanResults = (results) => {
+    logCleanResults: logCleanResults = (results, callback) => {
         if (results.length > 1) {
 
             results.forEach(product => {
@@ -167,6 +167,9 @@ module.exports = {
             })
             console.log('*********************END-INVENTORY***************')
             console.log('*************************************************')
+            if (!(callback === undefined || callback === null)) {
+                callback()
+            }
         } else {
             console.log(`
             *********************************
@@ -176,6 +179,9 @@ module.exports = {
             Stock: ${results[0].stock}
             *********************************
             `);
+            if (!(callback === undefined || callback === null)) {
+                callback()
+            }
         }
 
     },
