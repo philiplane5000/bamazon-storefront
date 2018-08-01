@@ -1,7 +1,7 @@
 const result   = require('dotenv').config();
 const mysql    = require('mysql');
 const inquirer = require('inquirer');
-const utils    = require('./utils');
+const utils    = require('./assets/js/utils');
 
 const connection = mysql.createConnection({
     host: 'bamazon-west-coast.cpzqdqagzv5q.us-west-1.rds.amazonaws.com',
