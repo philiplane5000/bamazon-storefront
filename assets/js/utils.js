@@ -167,6 +167,7 @@ module.exports = {
             })
             console.log('*********************END-INVENTORY***************')
             console.log('*************************************************')
+            console.log('\n');
             if (!(callback === undefined || callback === null)) {
                 callback()
             }
