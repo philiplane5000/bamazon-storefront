@@ -3,10 +3,10 @@ const inquirer = require('inquirer');
 const mysql = require('mysql');
 
 const connection = mysql.createConnection({
-    host: 'bamazon-west-coast.cpzqdqagzv5q.us-west-1.rds.amazonaws.com',
+    host: 'localhost',
     port: 3306,
-    user: process.env.MYSQL_USERNAME,
-    password: process.env.MYSQL_PASSWORD,
+    user: "root",
+    password: "root",
     database: 'bamazon'
 })
 
