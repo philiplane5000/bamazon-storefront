@@ -77,8 +77,7 @@
 ![manager step five](./assets/scrnshots/manager05.png)
 
 #### Inventory before add product:
-![before add product](./assets/scrnshots/manager05-A.png)
+![before add product](./assets/scrnshots/manager05-B.png)
 
-#### Inventory before add product:
-![after add product](./assets/scrnshots/manager05-B.png)
-
+#### Inventory after add product:
+![after add product](./assets/scrnshots/manager05-A.png)
