@@ -54,13 +54,19 @@
 ## WALKTHROUGH
 - - -
 
+#### Customer Access:
+
 ![customer step one](./assets/scrnshots/customer01.png)
 
 ![customer step one](./assets/scrnshots/customer02.png)
 
 ![customer step three](./assets/scrnshots/customer03.png)
 
+#### Manager Access:
+
 ![manager step one](./assets/scrnshots/manager01.png)
+
+![populating inventory](./assets/scrnshots/customer02.png)
 
 ![manager step two](./assets/scrnshots/manager02.png)
 
