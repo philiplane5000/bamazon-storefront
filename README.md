@@ -51,3 +51,28 @@
 ![manager access success](./assets/scrnshots/manager01.png)
 
 - - -
+## WALKTHROUGH
+- - -
+
+![customer step one](./assets/scrnshots/customer01.png)
+
+![customer step one](./assets/scrnshots/customer02.png)
+
+![customer step three](./assets/scrnshots/customer03.png)
+
+![manager step one](./assets/scrnshots/manager01.png)
+
+![manager step two](./assets/scrnshots/manager02.png)
+
+![manager step three](./assets/scrnshots/manager03.png)
+
+![manager step four](./assets/scrnshots/manager04.png)
+
+![manager step five](./assets/scrnshots/manager05.png)
+
+![before add product](./assets/scrnshots/manager05-A.png)
+* INVENTORY BEFORE ADD PRODCUT 
+
+![after add product](./assets/scrnshots/manager05-B.png)
+* INVENTORY AFTER ADD PRODUCT
+
