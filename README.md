@@ -10,22 +10,27 @@
 
 * `RUN` npm install in your CLI for required packages
 
+* `WRITE` a `.env` file using the mysql database username and password
+
 ### CUSTOMER ACCESS:
 
 * `RUN` command `node customer` in your terminal/bash window. Follow the on screen prompts to view live inventory or place an order. Viewing the inventory returns :
+
     * item_id (unique id for each product)
+
     * product_name (Name of product)
+
     * department_name
+
     * stock_quantity (how much of the product is available in stores)
+
     * price (cost to customer)
 
 ![customer access success](./assets/scrnshots/customer01.png)
 
 ### MANAGER ACCESS:
 
-* Create a new Node application called `bamazonManager.js`. Running this application will:
-
-  * List a set of menu options:
+* `RUN` command `node manager`in your terminal/bash window. Running this command will prompt you, as manager, to select from the following commands:
 
     * View Products for Sale
     
@@ -35,12 +40,14 @@
     
     * Add New Product
 
-  * If a manager selects `View Products for Sale`, the app should list every available item: the item IDs, names, prices, and quantities.
+  * If a manager selects `View Products for Sale`, the app should lists every item in the inventory: item IDs, names, prices, and quantities.
 
-  * If a manager selects `View Low Inventory`, then it should list all items with an inventory count lower than five.
+  * If a manager selects `View Low Inventory`, the app generates a list of all items with an inventory count lower than five.
 
-  * If a manager selects `Add to Inventory`, your app should display a prompt that will let the manager "add more" of any item currently in the store.
+  * If a manager selects `Add to Inventory`, the app displays a prompt that will let the manager "add more" of any item currently in the store.
 
-  * If a manager selects `Add New Product`, it should allow the manager to add a completely new product to the store.
+  * If a manager selects `Add New Product`, the app allows the manager to add a completely new product to the store.
+
+![manager access success](./assets/scrnshots/manager01.png)
 
 - - -
